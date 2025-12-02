@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{46217709-734B-4E76-8DE5-DCD7ADBDABB7}</ProjectGuid>
+    <RootNamespace>VanillaPlusAO</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>VanillaPlusAO</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.28916.169</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(DXSDK_DIR)Lib\x86;$(SolutionDir).\Libraries</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(DXSDK_DIR)Lib\x86;$(SolutionDir).\Libraries</LibraryPath>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\..;$(SolutionDir)\..\nvse;$(SolutionDir)\..\nvse\nvse;internal;internal\Game;$(SolutionDir)\..\external;$(SolutionDir)\..\external\simpleini;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GAME;NVSE_PLUGIN_EXAMPLE_EXPORTS;RUNTIME_VERSION=0x040020D0;RUNTIME;WIN32_LEAN_AND_MEAN;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ForcedIncludeFiles>shared/defines.hpp;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>d3d9.lib;dxguid.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Message>Installing DLL...</Message>
+      <Command>copy "$(TargetPath)" "$(ProjectDir)..\package\NVSE\Plugins\$(TargetFileName)"
+copy "$(TargetDir)$(TargetName).pdb" "$(ProjectDir)..\package\NVSE\Plugins\$(TargetName).pdb"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\..;$(SolutionDir)\..\nvse;$(SolutionDir)\..\nvse\nvse;internal;internal\Game;$(SolutionDir)\..\external;$(SolutionDir)\..\external\simpleini;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GAME;NVSE_PLUGIN_EXAMPLE_EXPORTS;RUNTIME_VERSION=0x040020D0;RUNTIME;WIN32_LEAN_AND_MEAN;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ForcedIncludeFiles>shared/defines.hpp;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <Optimization>MaxSpeed</Optimization>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <IntelJCCErratum>true</IntelJCCErratum>
+    </ClCompile>
+    <Link>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>d3d9.lib;dxguid.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Message>Installing DLL...</Message>
+      <Command>copy "$(TargetPath)" "$(ProjectDir)..\package\NVSE\Plugins\$(TargetFileName)"
+copy "$(TargetDir)$(TargetName).pdb" "$(ProjectDir)..\package\NVSE\Plugins\$(TargetName).pdb"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\shared\SafeWrite\SafeWrite.cpp" />
+    <ClCompile Include="..\shared\Utils\DebugLog.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\BSMemory.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\BSRenderedTexture.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\BSRenderState.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\BSShader.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\BSShaderAccumulator.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\BSShaderManager.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\BSTextureManager.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\ImageSpaceEffect.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\ImageSpaceManager.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\ImageSpaceShader.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\ImageSpaceShaderParam.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\ImageSpaceTexture.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\ShadowSceneLight.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\ShadowSceneNode.cpp" />
+    <ClCompile Include="internal\Game\Bethesda\TESMain.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiAVObject.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiD3DTextureStage.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiDX9Renderer.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiDX9TextureData.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiFixedString.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiGlobalStringTable.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiMatrix3.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiMemManager.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiMemObject.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiMemory.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiObject.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiObjectNET.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiPoint3.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiPoint4.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiRefObject.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiRenderer.cpp" />
+    <ClCompile Include="internal\Game\Gamebryo\NiTexture.cpp" />
+    <ClCompile Include="internal\Misc\BSD3DTexture.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\external\simpleini\SimpleIni.h" />
+    <ClInclude Include="..\nvse\nvse_version.h" />
+    <ClInclude Include="..\nvse\PluginAPI.h" />
+    <ClInclude Include="..\shared\Defines.hpp" />
+    <ClInclude Include="..\shared\SafeWrite\SafeWrite.hpp" />
+    <ClInclude Include="..\shared\Utils\AddressPtr.hpp" />
+    <ClInclude Include="..\shared\Utils\Bitfield.hpp" />
+    <ClInclude Include="..\shared\Utils\DebugLog.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSBatchRenderer.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSCompoundFrustum.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSCubeMapCamera.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSFogProperty.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSGraphics.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSMemObject.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSMemory.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSRenderedTexture.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSRenderState.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSSceneGraph.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSShader.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSShaderAccumulator.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSShaderLightingProperty.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSShaderManager.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSShaderPPLightingProperty.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSShaderProperty.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSShaderTextureSet.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSSimpleArray.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSString.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSTextureManager.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\BSTextureSet.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ImageSpaceBaseData.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ImageSpaceEffect.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ImageSpaceEffectDepthOfField.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ImageSpaceEffectParam.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ImageSpaceManager.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ImageSpaceShader.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ImageSpaceShaderParam.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ImageSpaceTexture.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\NiUpdateData.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\SceneGraph.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ShadowSceneLight.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\ShadowSceneNode.hpp" />
+    <ClInclude Include="internal\Game\Bethesda\TESMain.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\Ni2DBuffer.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiAccumulator.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiAdditionalGeometryData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiAllocator.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiAlphaAccumulator.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiAlphaProperty.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiAVObject.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiAVObjectPalette.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiBackToFrontAccumulator.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiBinaryStream.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiBound.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiCamera.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiCloningProcess.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiCollisionObject.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiColor.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiColorA.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiCriticalSection.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiCullingProperty.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DDefaultShader.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DPass.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DPixelShader.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DRenderState.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DRenderStateGroup.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DRSEntry.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DShader.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DShaderConstantMap.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DShaderDeclaration.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DShaderInterface.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DShaderLibraryVersion.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DShaderProgram.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DTextureStage.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DTextureStageGroup.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiD3DVertexShader.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiDepthStencilBuffer.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiDirectionalLight.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiDX9MaterialManager.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiDX9Renderer.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiDX9RenderState.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiDX9ShaderDeclaration.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiDX9TextureData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiDynamicEffect.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiDynamicEffectState.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiExtraData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiFile.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiFixedString.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiFogProperty.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiFrustum.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiFrustumPlanes.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiGeometry.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiGeometryBufferData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiGeometryData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiGeometryGroupManager.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiGlobalStringTable.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiGPUProgram.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiLight.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiMaterialProperty.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiMatrix3.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiMemManager.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiMemObject.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiMemory.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiNode.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiObject.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiObjectNET.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPalette.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPersistentSrcTextureRendererData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPixelData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPixelFormat.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPlane.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPoint2.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPoint3.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPoint4.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPointLight.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiProperty.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiPropertyState.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiQuaternion.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiRect.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiRefObject.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiRenderedCubeMap.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiRenderedTexture.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiRenderer.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiRenderTargetGroup.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiRTTI.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiShadeProperty.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiShader.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiShaderAttributeDesc.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiShaderConstantMap.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiShaderConstantMapEntry.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NIShaderDeclaration.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiShaderDescBase.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiSkinData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiSkinInstance.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiSkinPartition.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiSmartPointer.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiSourceCubemap.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiSourceTexture.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiSpotLight.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiStencilProperty.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTAbstractPoolAllocator.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTArray.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTDefaultAllocator.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTexture.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTexturingProperty.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTLargeArray.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTList.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTListBase.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTMallocInterface.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTMap.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTMapBase.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTNewInterface.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTPointerAllocator.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTPointerList.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTPointerListBase.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTPointerMap.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTransform.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTriBasedGeom.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTriBasedGeomData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTriShape.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTriShapeData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTriStrips.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTriStripsData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTriStripsDynamicData.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTSet.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiTStringMap.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiVBBlock.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiVBChip.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiVBDynamicSet.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiVBSet.hpp" />
+    <ClInclude Include="internal\Game\Gamebryo\NiVisibleArray.hpp" />
+    <ClInclude Include="internal\Misc\BSD3DTexture.hpp" />
+    <ClInclude Include="internal\Misc\CustomGameSetting.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="internal\Game\Bethesda\BSSimpleArray.inl" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets" Condition="Exists('packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets'))" />
+  </Target>
+</Project>
