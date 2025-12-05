@@ -436,11 +436,19 @@ void InitializeTextures() {
 
 	spLinearizedDepthTex = BSD3DTexture::CreateObject(pD3DTexture);
 
+	bool bPrevUseCustomFormat = BSRenderedTexture::bUseCustomFormat;
+	bool bPrevIsRT = BSRenderedTexture::bIsRenderTarget;
+	D3DFORMAT kPrevFormat = BSRenderedTexture::eFormat;
+
 	NiTexture::FormatPrefs kTextureFormat(NiTexture::FormatPrefs::DOUBLE_COLOR_32, NiTexture::FormatPrefs::ALPHA_DEFAULT, NiTexture::FormatPrefs::NO);
 	BSRenderedTexture::bUseCustomFormat = true;
 	BSRenderedTexture::bIsRenderTarget = true;
 	BSRenderedTexture::eFormat = D3DFMT_G16R16F;
 	spAORT = BSRenderedTexture::CreateTexture("AO", uiSAOWidth, uiSAOHeight, kTextureFormat, Ni2DBuffer::MULTISAMPLE_NONE, false, nullptr, 0, 0);
+
+	BSRenderedTexture::bUseCustomFormat = bPrevUseCustomFormat;
+	BSRenderedTexture::bIsRenderTarget = bPrevIsRT;
+	BSRenderedTexture::eFormat = kPrevFormat;
 }
 
 void InitializeShaders() {
@@ -509,7 +517,7 @@ void ShaderLoaderMessageHandler(NVSEMessagingInterface::Message* apMessage) {
 EXTERN_DLL_EXPORT bool NVSEPlugin_Query(const NVSEInterface* nvse, PluginInfo* info) {
 	info->infoVersion = PluginInfo::kInfoVersion;
 	info->name = "Vanilla Plus AO";
-	info->version = 100;
+	info->version = 101;
 
 	return !nvse->isEditor;
 }
