@@ -399,9 +399,9 @@ void LoadSettings() {
 	kAOSettings[0].uiSamples.Initialize("uAOExtSamples", static_cast<uint32_t>(kIni.GetLongValue("Exterior", "uSamples", 9)));
 	kAOSettings[0].uiTurns.Initialize("uAOExtTurns", static_cast<uint32_t>(kIni.GetLongValue("Exterior", "uTurns", 7)));
 	kAOSettings[0].fRadius.Initialize("fAOExtRadius", static_cast<float>(kIni.GetDoubleValue("Exterior", "fRadius", 1.5)));
-	kAOSettings[0].fBias.Initialize("fAOExtBias", static_cast<float>(kIni.GetDoubleValue("Exterior", "fBias", 0.02)));
+	kAOSettings[0].fBias.Initialize("fAOExtBias", static_cast<float>(kIni.GetDoubleValue("Exterior", "fBias", 0.05)));
 	kAOSettings[0].fIntensity.Initialize("fAOExtIntensity", static_cast<float>(kIni.GetDoubleValue("Exterior", "fIntensity", 1.0)));
-	kAOSettings[0].fEdgeSharpness.Initialize("fAOExtEdgeSharpness", static_cast<float>(kIni.GetDoubleValue("Exterior", "fEdgeSharpness", 2.0)));
+	kAOSettings[0].fEdgeSharpness.Initialize("fAOExtEdgeSharpness", static_cast<float>(kIni.GetDoubleValue("Exterior", "fEdgeSharpness", 2.5)));
 	kAOSettings[0].fLuminanceThreshold.Initialize("fAOExtLuminanceThreshold", static_cast<float>(kIni.GetDoubleValue("Exterior", "fLuminanceThreshold", 1.0)));
 	kAOSettings[0].fStrength.Initialize("fAOExtStrength", static_cast<float>(kIni.GetDoubleValue("Exterior", "fStrength", 1.5)));
 	kAOSettings[0].fMinAmbient.Initialize("fAOExtMinAmbient", static_cast<float>(kIni.GetDoubleValue("Exterior", "fMinAmbient", 0.1)));
@@ -415,7 +415,7 @@ void LoadSettings() {
 	kAOSettings[1].fEdgeSharpness.Initialize("fAOIntEdgeSharpness", static_cast<float>(kIni.GetDoubleValue("Interior", "fEdgeSharpness", 1.0)));
 	kAOSettings[1].fLuminanceThreshold.Initialize("fAOIntLuminanceThreshold", static_cast<float>(kIni.GetDoubleValue("Interior", "fLuminanceThreshold", 1.0)));
 	kAOSettings[1].fStrength.Initialize("fAOIntStrength", static_cast<float>(kIni.GetDoubleValue("Interior", "fStrength", 1.5)));
-	kAOSettings[1].fMinAmbient.Initialize("fAOIntMinAmbient", static_cast<float>(kIni.GetDoubleValue("Interior", "fMinAmbient", 0.1)));
+	kAOSettings[1].fMinAmbient.Initialize("fAOIntMinAmbient", static_cast<float>(kIni.GetDoubleValue("Interior", "fMinAmbient", 0.2)));
 }
 
 void InitializeTextures() {
@@ -517,7 +517,7 @@ void ShaderLoaderMessageHandler(NVSEMessagingInterface::Message* apMessage) {
 EXTERN_DLL_EXPORT bool NVSEPlugin_Query(const NVSEInterface* nvse, PluginInfo* info) {
 	info->infoVersion = PluginInfo::kInfoVersion;
 	info->name = "Vanilla Plus AO";
-	info->version = 101;
+	info->version = 102;
 
 	return !nvse->isEditor;
 }
